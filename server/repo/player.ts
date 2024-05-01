@@ -1,9 +1,10 @@
 'use server';
 
-import { db } from '@/server/database';
+import { InferResultType, db } from '@/server/database';
 import { PlayerSchema, player } from '@/server/database/schema';
 
 type NewPlayer = typeof player.$inferInsert;
+type SelectedPlayer = InferResultType<'player', { team: true }>;
 
 export const createPlayer = async (newPlayer: NewPlayer) => {
     const result = await db.insert(player).values(newPlayer).returning();
@@ -13,16 +14,24 @@ export const createPlayer = async (newPlayer: NewPlayer) => {
 
 export const getPlayer = async (id: number) => {
     const result = await db.query.player.findFirst({
-        where: (player, { eq }) => eq(player.id, id)
+        where: (player, { eq }) => eq(player.id, id),
+        with: { team: true }
     });
 
     if (!result) return null;
 
-    return PlayerSchema.parse(result);
+    return toDomain(result);
 };
 
 export const getAllPlayers = async () => {
-    const result = await db.query.player.findMany();
+    const result = await db.query.player.findMany({
+        orderBy: (player, { asc }) => asc(player.id),
+        with: { team: true }
+    });
 
-    return result.map((player) => PlayerSchema.parse(player));
+    return result.map((player) => toDomain(player));
+};
+
+const toDomain = (player: SelectedPlayer) => {
+    return PlayerSchema.parse(player);
 };

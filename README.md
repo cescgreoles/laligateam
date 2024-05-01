@@ -25,3 +25,9 @@ Every time you change the schemas, you need to run the following command to upda
 ```bash
 npm run db:push
 ```
+
+To see the database schema, run:
+
+```bash
+npm run db:studio
+```

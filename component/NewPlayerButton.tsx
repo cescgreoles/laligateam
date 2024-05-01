@@ -1,18 +1,20 @@
 'use client';
 
-import { Position } from '@/server/database/schema';
-import { createPlayer } from '@/server/repo/player';
+import { createTeam } from '@/server/repo/team';
 
 const NewPlayerButton = () => {
     return (
         <button
             onClick={() =>
-                createPlayer({
-                    name: 'Pau',
-                    surname: 'Cubarsí',
-                    value: 1500,
-                    dorsal: 33,
-                    position: Position.DEFENDER
+                // createPlayer({
+                //     name: 'Pau',
+                //     surname: 'Cubarsí',
+                //     value: 1500,
+                //     dorsal: 33,
+                //     position: Position.DEFENDER
+                // })
+                createTeam({
+                    name: 'Barça'
                 })
             }
         >

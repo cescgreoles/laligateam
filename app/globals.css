@@ -1,3 +1,44 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    min-width: 0;
+}
+
+html {
+    position: relative;
+    width: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    position: relative;
+    width: 100%;
+    display: grid;
+    grid-template-rows: max-content minmax(0, 1fr);
+}
+
+img,
+video,
+svg {
+    display: block;
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    background: none;
+    outline: none;
+    cursor: pointer;
+}
+
+li {
+    list-style-type: none;
+}
