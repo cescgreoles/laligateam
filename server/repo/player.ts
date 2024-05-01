@@ -20,3 +20,9 @@ export const getPlayer = async (id: number) => {
 
     return PlayerSchema.parse(result);
 };
+
+export const getAllPlayers = async () => {
+    const result = await db.query.player.findMany();
+
+    return result.map((player) => PlayerSchema.parse(player));
+};
