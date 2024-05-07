@@ -15,7 +15,7 @@ const Navbar = () => {
                     <NavbarItem
                         selected={pathname === '/'}
                         label={'Equip'}
-                        icon={<TbSoccerField className="h-7 w-7 stoke-[1px]" />}
+                        icon={<TbSoccerField className="h-6 w-6 stroke-[1.5px]" />}
                     />
                 </Link>
 
@@ -23,7 +23,7 @@ const Navbar = () => {
                     <NavbarItem
                         selected={pathname === '/players'}
                         label={'Jugadors'}
-                        icon={<TbUsers className="h-7 w-7 stoke-[1px]" />}
+                        icon={<TbUsers className="h-6 w-6 stroke-[1.5px]" />}
                     />
                 </Link>
             </nav>
