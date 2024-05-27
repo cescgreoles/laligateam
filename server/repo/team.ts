@@ -30,6 +30,10 @@ export const getAllTeams = async () => {
     return result.map((team) => toDomain(team));
 };
 
+export const deleteAllTeams = async () => {
+    await db.delete(team);
+};
+
 const toDomain = (team: SelectedTeam) => {
     return TeamSchema.parse(team);
 };

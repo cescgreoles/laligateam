@@ -1,5 +1,5 @@
 import { relations } from 'drizzle-orm';
-import { integer, pgTable, serial, text } from 'drizzle-orm/pg-core';
+import { integer, pgTable, text } from 'drizzle-orm/pg-core';
 import { z } from 'zod';
 import { TeamSchema, team } from './team';
 
@@ -37,21 +37,25 @@ export const PlayerSchema = z.object({
     id: z.number(),
     name: z.string(),
     surname: z.string(),
-    value: z.number(),
+    commonName: z.string(),
     dorsal: z.number(),
     position: z.nativeEnum(Position),
+    image: z.string(),
+    birthday: z.string().nullable(),
     team: TeamSchema
 });
 export type Player = z.infer<typeof PlayerSchema>;
 
 // Database schema
 export const player = pgTable('player', {
-    id: serial('id').primaryKey().notNull(),
+    id: integer('id').primaryKey().notNull(),
     name: text('name').notNull(),
     surname: text('surname').notNull(),
-    value: integer('value').notNull(),
+    commonName: text('commonName').notNull(),
     dorsal: integer('dorsal').notNull(),
     position: text('position').notNull(),
+    image: text('image').notNull(),
+    birthday: text('birthday'),
     teamId: integer('teamId').references(() => team.id, { onDelete: 'cascade' })
 });
 
