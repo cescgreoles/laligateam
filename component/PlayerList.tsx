@@ -13,8 +13,8 @@ interface Props {
 const PlayerList = ({ players }: Props) => {
     const [query, setQuery] = useUrlState('query', '', z.string());
 
-    const filteredPlayers = players.filter(({ name, surname, team, dorsal, position }) =>
-        `${name} ${surname} ${dorsal} ${team.name} ${positionName(position)}`
+    const filteredPlayers = players.filter(({ name, surname, team, dorsal, position, commonName }) =>
+        `${name} ${surname} ${dorsal} ${team.name} ${positionName(position)} ${commonName}`
             .toLowerCase()
             .includes(query.toLowerCase())
     );
