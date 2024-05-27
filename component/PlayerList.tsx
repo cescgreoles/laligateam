@@ -23,7 +23,7 @@ const PlayerList = ({ players }: Props) => {
         <>
             <Filters query={query} setQuery={setQuery} />
 
-            <ul className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 w-full ">
+            <ul className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 w-full mb-16">
                 {filteredPlayers.map((player) => (
                     <PlayerRow key={player.id} player={player} />
                 ))}

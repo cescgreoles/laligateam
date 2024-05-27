@@ -32,6 +32,16 @@ export const getAllPlayers = async () => {
     return result.map((player) => toDomain(player));
 };
 
+export const getAllPlayersForTeam = async (teamId: number) => {
+    const result = await db.query.player.findMany({
+        where: (player, { eq }) => eq(player.teamId, teamId),
+        orderBy: (player, { asc }) => asc(player.id),
+        with: { team: true }
+    });
+
+    return result.map((player) => toDomain(player));
+};
+
 const toDomain = (player: SelectedPlayer) => {
     return PlayerSchema.parse(player);
 };
